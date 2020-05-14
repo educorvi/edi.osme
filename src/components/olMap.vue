@@ -8,7 +8,6 @@
     import 'ol/ol.css';
     import Feature from 'ol/Feature';
     import Map from 'ol/Map';
-    import gaMap from ""
     import View from 'ol/View';
     import Point from 'ol/geom/Point';
     import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
@@ -16,7 +15,8 @@
     import VectorSource from 'ol/source/Vector';
     import {Icon, Style, Fill, Stroke, Text, Circle} from 'ol/style';
     import OSM from "ol/source/OSM"
-
+    import FullScreen from "ol/control/FullScreen"
+    import ScaleLine from 'ol/control/ScaleLine';
     export default {
         name: "map",
 
@@ -51,6 +51,8 @@
             });
 
             map.addLayer(vectorLayer)
+            map.addControl(new FullScreen());
+            map.addControl(new ScaleLine())
 
             function featureListener(event, feature) {
                 function mapsSelector() {
@@ -82,14 +84,17 @@
                 });
             });
 
+            const descVisible = 20;
+            const colorPrimary = 'rgb(1,75,148)'
+
 
             function styleFunction(feature, resolution) {
                 return [
                     new Style({
                         image: new Circle({
                             radius: 8,
-                            fill: new Fill({color: 'rgb(255,255,255)'}),
-                            stroke: new Stroke({color: 'blue', width: 1})
+                            fill: new Fill({color: colorPrimary}),
+                            stroke: new Stroke({color: '#ffffff', width: 1})
                         }),
                         text: new Text({
                             font: '16px Calibri,sans-serif',
@@ -100,7 +105,7 @@
                             offsetY: 22,
                             // get the text from the feature - `this` is ol.Feature
                             // and show only under certain resolution
-                            text: resolution > 100 ? "" : feature.get('title'),
+                            text: resolution > descVisible ? "" : feature.get('title'),
                             backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'})
                         })
                     }),
@@ -115,8 +120,8 @@
                             offsetY: 50,
                             // get the text from the feature - `this` is ol.Feature
                             // and show only under certain resolution
-                            text: resolution > 100 ? "" : feature.get('adresse'),
-                            backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'})
+                            text: resolution > descVisible ? "" : feature.get('adresse'),
+                            backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'}),
                         })
                     })
                 ];
@@ -143,8 +148,7 @@
             addPoint(10.990280, 49.472500, "Süße Freiheit", "Friedrichstraße 5\n90762 Fürth");
 
             map.getView().fit(arbeit.getGeometry(), {maxZoom: 17});
-
-            console.log(map.geocode("Feld-Am-See-Ring 11 91452 Wilhermsdorf"));
+            map.updateSize();
         }
     }
 </script>
