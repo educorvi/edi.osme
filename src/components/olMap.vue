@@ -17,8 +17,12 @@
     import OSM from "ol/source/OSM"
     import FullScreen from "ol/control/FullScreen"
     import ScaleLine from 'ol/control/ScaleLine';
+
+    import axios from "axios"
+
+
     export default {
-        name: "map",
+        name: "olMap",
 
         data() {
             return {
@@ -120,20 +124,20 @@
                             offsetY: 50,
                             // get the text from the feature - `this` is ol.Feature
                             // and show only under certain resolution
-                            text: resolution > descVisible ? "" : feature.get('adresse'),
+                            text: resolution > descVisible ? "" : feature.get('address'),
                             backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'}),
                         })
                     })
                 ];
             }
 
-            function addPoint(lon, lat, title, adresse) {
+            function addPoint(lon, lat, title, address) {
                 const point = new Feature({
                     geometry: new Point(fromLonLat([lon, lat]))
                 })
 
                 point.set('title', title);
-                point.set('adresse', adresse);
+                point.set('address', address);
                 point.set("lon", lon);
                 point.set("lat", lat);
                 point.setStyle(styleFunction)
@@ -143,12 +147,26 @@
 
             }
 
+            // noinspection JSMismatchedCollectionQueryUpdate
+            const points = [];
 
-            const arbeit = addPoint(10.986680, 49.470240, "Niederlassung Fürth", "Karolinenstraße 17\n 90762 Fürth");
-            addPoint(10.990280, 49.472500, "Süße Freiheit", "Friedrichstraße 5\n90762 Fürth");
+            axios.get("locations.json").then(res => {
+                for (let i = 0; i < res.data.length; i++) {
+                    let loc = res.data[i];
+                    points.push(addPoint(loc.lon, loc.lat, loc.title, loc.address));
+                }
+                afterFilled()
+            });
 
-            map.getView().fit(arbeit.getGeometry(), {maxZoom: 17});
-            map.updateSize();
+
+            function afterFilled() {
+                const extent = vectorLayer.getSource().getExtent();
+
+                map.getView().fit(extent);
+                map.getView().setZoom(map.getView().getZoom()-1)
+                map.updateSize();
+            }
+
         }
     }
 </script>
