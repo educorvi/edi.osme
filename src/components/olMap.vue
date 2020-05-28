@@ -39,7 +39,7 @@
                     })
                 ],
                 view: new View({
-                    center: [0,0],
+                    center: [0, 0],
                     zoom: 0
                 })
             });
@@ -76,14 +76,15 @@
                     }
 
                 }
+
                 mapsSelector()
 
 
             }
 
 
-            map.on('click', function(event) {
-                map.forEachFeatureAtPixel(event.pixel, function(feature,layer) {
+            map.on('click', function (event) {
+                map.forEachFeatureAtPixel(event.pixel, function (feature, layer) {
                     featureListener(event, feature);
                 });
             });
@@ -102,7 +103,7 @@
                         }),
                         text: new Text({
                             font: '16px Calibri,sans-serif',
-                            fill: new Fill({ color: '#000' }),
+                            fill: new Fill({color: '#000'}),
                             stroke: new Stroke({
                                 color: '#fff', width: 2
                             }),
@@ -117,7 +118,7 @@
 
                         text: new Text({
                             font: '14px Calibri,sans-serif',
-                            fill: new Fill({ color: '#000' }),
+                            fill: new Fill({color: '#000'}),
                             stroke: new Stroke({
                                 color: '#fff', width: 2
                             }),
@@ -161,9 +162,8 @@
 
             function afterFilled() {
                 const extent = vectorLayer.getSource().getExtent();
-
                 map.getView().fit(extent);
-                map.getView().setZoom(map.getView().getZoom()-1)
+                map.getView().setZoom(map.getView().getZoom() - 1)
                 map.updateSize();
             }
 
