@@ -20,6 +20,10 @@
 
     import axios from "axios"
 
+    import icons from "@/icons";
+
+
+
 
     export default {
         name: "olMap",
@@ -70,7 +74,7 @@
                         (navigator.platform.indexOf("iPod") !== -1))
                         window.open(`http://maps.apple.com/maps?q=${lat},${lon}`);
                     else if (isAndroid) {
-                        window.open(`geo:${lon},${lat}`);
+                        window.open(`geo:${lat},${lon}`);
                     } else {
                         window.open(`https://maps.google.com/maps?daddr=${lat},${lon}&amp;ll=`);
                     }
@@ -96,10 +100,10 @@
             function styleFunction(feature, resolution) {
                 return [
                     new Style({
-                        image: new Circle({
-                            radius: 8,
-                            fill: new Fill({color: colorPrimary}),
-                            stroke: new Stroke({color: '#ffffff', width: 1})
+                        image: new Icon({
+                            img: icons.marker,
+                            imgSize: [512, 512],
+                            scale: (3/50)
                         }),
                         text: new Text({
                             font: '16px Calibri,sans-serif',
@@ -107,28 +111,28 @@
                             stroke: new Stroke({
                                 color: '#fff', width: 2
                             }),
-                            offsetY: 22,
+                            offsetY: 30,
                             // get the text from the feature - `this` is ol.Feature
                             // and show only under certain resolution
                             text: resolution > descVisible ? "" : feature.get('title'),
                             backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'})
                         })
                     }),
-                    new Style({
-
-                        text: new Text({
-                            font: '14px Calibri,sans-serif',
-                            fill: new Fill({color: '#000'}),
-                            stroke: new Stroke({
-                                color: '#fff', width: 2
-                            }),
-                            offsetY: 50,
-                            // get the text from the feature - `this` is ol.Feature
-                            // and show only under certain resolution
-                            text: resolution > descVisible ? "" : feature.get('address'),
-                            backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'}),
-                        })
-                    })
+                    // new Style({
+                    //
+                    //     text: new Text({
+                    //         font: '14px Calibri,sans-serif',
+                    //         fill: new Fill({color: '#000'}),
+                    //         stroke: new Stroke({
+                    //             color: '#fff', width: 2
+                    //         }),
+                    //         offsetY: 50,
+                    //         // get the text from the feature - `this` is ol.Feature
+                    //         // and show only under certain resolution
+                    //         text: resolution > descVisible ? "" : feature.get('address'),
+                    //         backgroundFill: new Fill({color: 'rgba(255,255,255,0.64)'}),
+                    //     })
+                    // })
                 ];
             }
 
@@ -176,7 +180,5 @@
         width: 100%;
         height: 800px;
         max-height: 90vh;
-
-
     }
 </style>
