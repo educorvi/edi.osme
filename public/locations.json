@@ -1,13 +1,11 @@
 [
   {
     "title": "Niederlassung Fürth",
-    "address": "Karolinenstraße 17\n 90762 Fürth",
     "lon": 10.986680,
     "lat": 49.470240
   },
   {
     "title": "Süße Freiheit",
-    "address": "Friedrichstraße 5\n90762 Fürth",
     "lon": 10.990280,
     "lat": 49.472500
   }
