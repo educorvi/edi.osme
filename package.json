@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "webpack serve --host 0.0.0.0",
-    "build": "webpack",
+    "build": "npm run clean && webpack",
     "lint": "eslint src",
     "release": "dotenv release-it",
     "zip": "zip-folder -o demo.zip dist",

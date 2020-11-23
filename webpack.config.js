@@ -11,7 +11,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {from: "testFiles/index.html", to:"index.html"},
-                {from: "testFiles/locations.json", to:"locations.json"}
+                {from: "testFiles/locations", to:"."}
             ]
         })
     ],

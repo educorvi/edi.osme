@@ -49,11 +49,11 @@ function featureListener(event, feature) {
             (navigator.platform.indexOf("iPod") !== -1))
             window.open(`http://maps.apple.com/maps?q=${lat},${lon}`);
         else if (isAndroid) {
-            window.open(`geo:${lat},${lon}`);
+            // window.open(`geo:${lat},${lon}`);
+            window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lon}`);
         } else {
             window.open(`https://maps.google.com/maps?daddr=${lat},${lon}&amp;ll=`);
         }
-
     }
 
     mapsSelector()
@@ -117,7 +117,7 @@ function addPoint(lon, lat, title, address, color) {
 }
 const points = [];
 
-axios.get("locations.json").then(res => {
+axios.get("locations").then(res => {
     for (let i = 0; i < res.data.length; i++) {
         let loc = res.data[i];
         points.push(addPoint(loc.lon, loc.lat, loc.title, loc.address, loc.color));
