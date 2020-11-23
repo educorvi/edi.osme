@@ -5,16 +5,23 @@
   "scripts": {
     "serve": "webpack serve --host 0.0.0.0",
     "build": "webpack",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "release": "dotenv release-it",
+    "zip": "zip-folder -o demo.zip dist",
+    "clean": "del-cli dist demo.zip"
   },
   "dependencies": {
     "axios": "^0.19.2",
     "ol": "^6.3.1"
   },
   "devDependencies": {
+    "@neferin/zip-folder": "^1.0.4",
     "copy-webpack-plugin": "^6.3.2",
     "css-loader": "^5.0.1",
+    "del-cli": "^3.0.1",
+    "dotenv-cli": "^4.0.0",
     "eslint": "^7.14.0",
+    "release-it": "^14.2.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.6.0",
     "webpack-cli": "^4.2.0",
