@@ -78,17 +78,17 @@ function getStyleFunction(color) {
                 image: new Icon({
                     crossOrigin: 'anonymous',
                     imgSize: [512, 512],
-                    scale: (3 / 50),
+                    scale: (4 / 50),
                     color:color,
                     src: icons.src
                 }),
                 text: new Text({
-                    font: '16px Calibri,sans-serif',
+                    font: '22px Calibri,sans-serif',
                     fill: new Fill({color: '#000'}),
                     stroke: new Stroke({
                         color: '#fff', width: 2
                     }),
-                    offsetY: 30,
+                    offsetY: 40,
                     // get the text from the feature - `this` is ol.Feature
                     // and show only under certain resolution
                     text: resolution > descVisible ? "" : feature.get('title'),
