@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "webpack serve --host 0.0.0.0",
-    "build": "npm run clean && webpack",
+    "prebuild": "npm run clean && mkdirp dist",
+    "build": "webpack --json > dist/stats.json",
+    "analyze": "webpack-bundle-analyzer dist/stats.json",
     "lint": "eslint src",
     "release": "dotenv release-it",
     "zip": "zip-folder -o demo.zip dist",
@@ -21,9 +23,11 @@
     "del-cli": "^3.0.1",
     "dotenv-cli": "^4.0.0",
     "eslint": "^7.14.0",
+    "mkdirp": "^0.5.5",
     "release-it": "^14.2.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.6.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0"
   }
