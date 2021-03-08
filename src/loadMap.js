@@ -129,6 +129,10 @@ axios.get("locations").then(res => {
 function afterFilled() {
     const extent = vectorLayer.getSource().getExtent();
     map.getView().fit(extent);
-    map.getView().setZoom(map.getView().getZoom() - 1)
+    if (points.length > 1) {
+        map.getView().setZoom(map.getView().getZoom() - 1);
+    } else {
+        map.getView().setZoom(16);
+    }
     map.updateSize();
 }
