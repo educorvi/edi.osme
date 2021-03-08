@@ -117,7 +117,7 @@ function addPoint(lon, lat, title, address, color) {
 }
 const points = [];
 
-axios.get("locations").then(res => {
+axios.get(window.location.href.replace(/\/$/, "")+"/locations").then(res => {
     for (let i = 0; i < res.data.length; i++) {
         let loc = res.data[i];
         points.push(addPoint(loc.lon, loc.lat, loc.title, loc.address, loc.color));
