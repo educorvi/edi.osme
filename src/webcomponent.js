@@ -11,6 +11,7 @@ import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
 import {fromLonLat} from "ol/proj";
 import "ol/ol.css";
+import "./style.css";
 
 class Osme extends HTMLElement {
     constructor() {
