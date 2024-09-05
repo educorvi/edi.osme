@@ -10,29 +10,10 @@ Beispiel:
     <title>OSME</title>
 </head>
 <body>
-<div id="olmap"></div>
+<custom-osm locations='[{"title":"Niederlassung Fürth","lon":10.986680,"lat":49.470240,"color":"#014b94"},{"title":"Süße Freiheit","lon":10.990280,"lat":49.472500,"color":"#d70007"}]'></custom-osm>
 
 <script src="dist.js"></script>
 </body>
 </html>
-```
-
-Die Locations werden abgrufen unter <Adresse der Website mit der eingebetteten Karte>/locations, und es wird folgendes Format erwartet:
-``` json
-[
-  {
-    "title": "Niederlassung Fürth",
-    "lon": 10.986680,
-    "lat": 49.470240,
-    "color": "#014b94"
-  },
-  {
-    "title": "Süße Freiheit",
-    "lon": 10.990280,
-    "lat": 49.472500,
-    "color": "#d70007"
-  }
-]
-
 ```
 `color` ist hierbei optional
