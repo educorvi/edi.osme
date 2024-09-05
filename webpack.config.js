@@ -1,7 +1,9 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
+    mode: "production",
     entry: './src/webcomponent.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -10,10 +12,16 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                {from: "testFiles/index.html", to:"index.html"},
+                {from: "testFiles/index.html", to: "index.html"},
             ]
         })
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin(),
+        ],
+    },
     module: {
         rules: [
             {
@@ -23,7 +31,7 @@ module.exports = {
         ],
     },
     devServer: {
-        contentBase:'./dist',
+        contentBase: './dist',
         hot: true,
         port: 8080
     }
