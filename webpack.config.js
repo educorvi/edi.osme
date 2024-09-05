@@ -2,7 +2,7 @@ const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: './src/loadMap.js',
+    entry: './src/webcomponent.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'dist.js'
@@ -11,7 +11,6 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {from: "testFiles/index.html", to:"index.html"},
-                {from: "testFiles/locations", to:"."}
             ]
         })
     ],
