@@ -1,6 +1,6 @@
 {
   "name": "bgetem_open_street_map",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "webpack serve --host 0.0.0.0",
