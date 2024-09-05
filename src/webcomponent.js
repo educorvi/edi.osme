@@ -18,9 +18,10 @@ class Osme extends HTMLElement {
     }
 
     connectedCallback() {
-        // const shadow = this.attachShadow({mode: 'open'});
+        const randomID = crypto.randomUUID?.() || Math.random().toString(36).substring(7);
 
-        const osmeID = "osme-" + (crypto.randomUUID() || Math.random().toString(36).substring(7));
+
+        const osmeID = "osme-" + randomID;
 
         const div = document.createElement('div');
         div.id = osmeID;
